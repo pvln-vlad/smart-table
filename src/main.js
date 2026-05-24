@@ -30,11 +30,13 @@ function collectState() {
 		const rowsPerPage = parseInt(state.rowsPerPage);    // приведём количество страниц к числу
 		const page = parseInt(state.page ?? 1);                // номер страницы по умолчанию 1 и тоже число
 
-		return {                                            // расширьте существующий return вот так
-			...state,
-			rowsPerPage,
-			page
-		};
+
+	return {
+		...state,
+		rowsPerPage,
+		page,
+		total: [parseFloat(state.totalFrom), parseFloat(state.totalTo)]
+	};
 }
 
 /**
