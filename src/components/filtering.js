@@ -1,6 +1,4 @@
-// @todo: #4.3 — настроить компаратор
-
-    // заполнили выпадающие списки опциями
+// заполнили выпадающие списки опциями
 	export function initFiltering(elements) {
 		const updateIndexes = (elements, indexes) => {
 			Object.keys(indexes).forEach((elementName) => {
@@ -15,9 +13,21 @@
 
 		const applyFiltering = (query, state, action) => {
 			// код с обработкой очистки поля
+			if (action && action.name === 'clear') {
+				const parent = action.parentElement;
+				if (parent) {
+					const input = parent.querySelector("input");
+					if (input) {
+						input.value = "";
+					}
+				}
 
+				const fieldName = action.dataset.field;
+				if (fieldName && fieldName in state) {
+					state[fieldName] = "";
+				}
+			}
 
-			// @todo: #4.5 — отфильтровать данные, используя компаратор
 			const filter = {};
 			Object.keys(elements).forEach(key => {
 				if (elements[key]) {
